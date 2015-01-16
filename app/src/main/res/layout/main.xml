@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="80dp"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:id="@+id/widget_bg">
+
+    <TextView
+        android:textSize="32dp"
+        android:id="@+id/temperature_text"
+        android:textColor="#fff48120"
+        android:text="--°C"
+        android:typeface="sans"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold">
+        android:t
+    </TextView>
+
+    <TextView
+        android:textSize="8dp"
+        android:id="@+id/refresh_time"
+        android:textColor="#fff48120"
+        android:typeface="sans"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textIsSelectable="false"
+        android:text="Tap to refresh">
+    </TextView>
+
+</LinearLayout>
