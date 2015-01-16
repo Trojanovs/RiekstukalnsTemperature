@@ -3,6 +3,7 @@ package trojanov.roman.riekstukalnstemperature;
 /**
  * Created by Roman on 16.01.2015.
  */
+
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -10,12 +11,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -33,8 +33,7 @@ import java.util.Date;
 public class Widget extends AppWidgetProvider {
 
     RemoteViews remoteViews;
-    private Intent intnt;
-    private Context cntxt;
+    Context cntxt;
 
 
     public static String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
@@ -63,11 +62,7 @@ public class Widget extends AppWidgetProvider {
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-
-        cntxt = context;
-        intnt = intent;
-
+    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         //Ловим наш Broadcast, проверяем и выводим сообщение
         final String action = intent.getAction();
         if (ACTION_WIDGET_RECEIVER.equals(action)) {
@@ -112,8 +107,6 @@ public class Widget extends AppWidgetProvider {
 
             return new Response(spanElement.text(), formatter.format(refreshTime));
 
-        } catch (ClientProtocolException e) {
-            Log.e("Error", "sendRequest", e);
         } catch (IOException e) {
             Log.e("Error", "sendRequest", e);
         } catch (ParseException e) {
@@ -121,7 +114,6 @@ public class Widget extends AppWidgetProvider {
         }
         return null;
     }
-
 
     class LongAndComplicatedTask extends AsyncTask<Void, Void, Response> {
 
