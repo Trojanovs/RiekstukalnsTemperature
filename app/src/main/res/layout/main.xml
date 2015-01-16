@@ -21,7 +21,7 @@
     </TextView>
 
     <TextView
-        android:textSize="8dp"
+        android:textSize="15dp"
         android:id="@+id/refresh_time"
         android:textColor="#fff48120"
         android:typeface="sans"

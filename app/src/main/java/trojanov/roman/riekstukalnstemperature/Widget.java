@@ -58,6 +58,9 @@ public class Widget extends AppWidgetProvider {
 
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
+        cntxt = context;
+
+
         final String action = intent.getAction();
         if (ACTION_WIDGET_RECEIVER.equals(action)) {
 
