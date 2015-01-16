@@ -41,30 +41,23 @@ public class Widget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-
-        //Создаем новый RemoteViews
         remoteViews = new RemoteViews(context.getPackageName(), R.layout.main);
 
-        //Подготавливаем Intent для Broadcast
         Intent active = new Intent(context, Widget.class);
         active.setAction(ACTION_WIDGET_RECEIVER);
 
-        //создаем наше событие
         PendingIntent actionPendingIntent = PendingIntent.getBroadcast(context, 0, active, 0);
 
-        //регистрируем наше событие
         remoteViews.setOnClickPendingIntent(R.id.widget_bg, actionPendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.temperature_text, actionPendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.refresh_time, actionPendingIntent);
 
-        //обновляем виджет
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
 
     }
 
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
-        //Ловим наш Broadcast, проверяем и выводим сообщение
         final String action = intent.getAction();
         if (ACTION_WIDGET_RECEIVER.equals(action)) {
 
@@ -86,8 +79,8 @@ public class Widget extends AppWidgetProvider {
     }
 
     private void getTemperature(){
-        LongAndComplicatedTask longTask = new LongAndComplicatedTask(); // Создаем экземпляр
-        longTask.execute(); // запускаем
+        LongAndComplicatedTask longTask = new LongAndComplicatedTask();
+        longTask.execute();
     }
 
     private Response getTemperatureFromRequest(){
@@ -95,7 +88,6 @@ public class Widget extends AppWidgetProvider {
         HttpPost httppost = new HttpPost("http://www.riekstukalns.lv/ajax/get-temp");
 
         try {
-            // Выполним запрос
             HttpResponse response = httpclient.execute(httppost);
             String responseString = EntityUtils.toString(response.getEntity(), "UTF-8");
             Document doc = Jsoup.parse(responseString);
