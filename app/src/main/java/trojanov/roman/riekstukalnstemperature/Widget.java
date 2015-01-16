@@ -41,6 +41,7 @@ public class Widget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
+
         //Создаем новый RemoteViews
         remoteViews = new RemoteViews(context.getPackageName(), R.layout.main);
 
